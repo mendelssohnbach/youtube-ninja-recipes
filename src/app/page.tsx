@@ -6,6 +6,9 @@ import {
   CardDescription,
   CardContent,
 } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 interface Recipe {
   title: string;
@@ -34,6 +37,13 @@ export default async function Home() {
           >
             <CardHeader className="flex-row gap-4 items-center">
               {/* avatar here */}
+              <Avatar>
+                <AvatarImage
+                  src={`/img/${recipe.image}`}
+                  alt="awesome recipe"
+                />
+                <AvatarFallback>{recipe.title.slice(0, 2)}</AvatarFallback>
+              </Avatar>
               <div>
                 <CardTitle>{recipe.title}</CardTitle>
                 <CardDescription>{recipe.time} mins to cook.</CardDescription>
@@ -43,8 +53,8 @@ export default async function Home() {
               <p>{recipe.description}</p>
             </CardContent>
             <CardFooter className="flex justify-between">
-              <button>View Recipe</button>
-              {recipe.vegan && <p>Vegan!</p>}
+              <Button>View Recipe</Button>
+              {recipe.vegan && <Badge variant="secondary">Vegan!</Badge>}
             </CardFooter>
           </Card>
         ))}
